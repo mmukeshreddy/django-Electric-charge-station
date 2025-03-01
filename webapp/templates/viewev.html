@@ -1,0 +1,22 @@
+{% extends 's_base.html' %}
+{% block content %}
+
+
+{{msg}}
+<h2><strong>View Own Service Data</strong></h2><br>
+
+<table id="tab" width="100%">
+<tr><th>Contact<th>No. of Fast charge points<th>Cost. of Fast charge (per hour) <th>No. of Normal charge points<th>Cost. of Normal charge (per hour)
+	{% for d in data%}
+	
+	<tr><td>{{d.phno}}<td>{{d.fast_charge}}<td>{{d.fast_cost}} /- <td>{{d.normal_charge}}<td>{{d.normal_cost}} /- 
+		
+	{% endfor %}
+</table>
+
+<br>
+<hr>
+<br>
+
+{% endblock %}
+

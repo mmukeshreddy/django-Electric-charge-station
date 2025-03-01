@@ -1,0 +1,27 @@
+{% extends 's_base.html' %}
+{% block content %}
+
+
+<center>
+<h2><strong>Edit Service Data</strong></h2><br>
+
+<table id="tab" width="50%">
+{% for d in data%}
+	<form method="post" action="/updatedata/">
+		{% csrf_token %}
+<tr><th>Contact<td><input class="form-control"   type="text" name="ph" value="{{d.phno}}" >
+<tr><th>No. of Fast charge<td><input class="form-control"   type="text" name="fast_charge" value="{{d.fast_charge}}" >
+<tr><th>Cost. of Fast charge<td><input class="form-control"   type="text" name="fast_cost" value="{{d.fast_cost}}" >
+<tr><th>No. of Normal charge<td><input class="form-control"   type="text" name="normal_charge" value="{{d.normal_charge}}" >
+<tr><th>Cost. of Normal charge<td><input class="form-control"   type="text" name="normal_cost" value="{{d.normal_cost}}" >
+<tr><th><th><input type="submit" value="Update" class="form-control"   >
+	</form>	
+	{% endfor %}
+</table>
+
+<br>
+<hr>
+<br>
+
+{% endblock %}
+

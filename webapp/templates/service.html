@@ -1,0 +1,37 @@
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<font size="" color="#6600ff">{{msg}}</font>
+
+
+
+<H2>EV Station Login</h2>
+<div class="w3l-contact-10 py-5" id="contact">
+            <div class="form-inner-cont mt-5">
+                <form action="/servicelogin/" method="post" class="signin-form">
+				{% csrf_token %}
+                    <div class="form-grids">
+						    <div class="form-input">
+                            <input type="text" name="email"  placeholder="Enter your email*"
+                                required="" />
+                        </div>
+                        <div class="form-input">
+                            <input type="password" name="pwd" placeholder="Enter Password "
+                                required />
+                        </div>
+                       
+                    </div>
+                    
+                    <div class="text-right">
+                        <button class="btn btn-style btn-primary">Login</button>
+                    </div>
+                </form>
+            </div> 
+						<a href="/servicesignup"><h5>No account? Signup here </h4></a>
+
+			</div>
+
+{% endblock %}

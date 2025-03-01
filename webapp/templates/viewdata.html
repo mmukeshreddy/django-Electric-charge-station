@@ -1,0 +1,47 @@
+
+
+{% extends 'u_base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<form method="post" action="/getdata/">
+{% csrf_token %} 
+	
+<table align="right">
+<tr>
+	<td>Filter (Min Distance) <input class="form-control"   type="number" value="50"  min="1" max="50"name="dist">
+	<input type="submit" value="Filter"></tr>
+</table>
+
+</form>
+<h2><strong>View nearest Ev Stations</strong></h2><br>
+
+
+
+<table id="tab" width="100%">
+<tr><th>Sno<th>Service Name<th>Email<th>Contact<th>No. of Fast charge points<th>Cost. of Fast charge (per hour) <th>No. of Normal charge points<th>Cost. of Normal charge (per hour)<th>Distance<th>
+	{% for d in data%}
+	
+	<tr><td>{{forloop.counter}}<td>{{d.name}}<td>{{d.email}}<td>{{d.phno}}<td>{{d.fast_charge}}<td>{{d.fast_cost}} /- <td>{{d.normal_charge}}<td>{{d.normal_cost}} /- <td>{{d.dist}} KM
+		
+
+<td>
+
+<form method="get" action="/viewloc2/" target="_blank">
+<input type="hidden" name="lat" value="{{d.latitude}}">
+<input type="hidden" name="lon" value="{{d.longitude}}">
+<input type="submit" value="View Location">
+		
+	{% endfor %}
+</table>
+<br>
+
+<br>
+<hr>
+<br>
+{% endblock %}
+
+
+

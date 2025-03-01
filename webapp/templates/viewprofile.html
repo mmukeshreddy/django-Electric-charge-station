@@ -1,0 +1,37 @@
+
+
+{% extends 'u_base.html' %}
+
+{% block content %}
+
+<center>
+<h2>Your Profile</h2>
+<br>
+{% for d1 in data %}
+<table id="tab" width="50%">
+<tr>
+	<th>Name</td>
+	<td>{{d1.name}}</td>
+</tr>
+<tr>
+	<th>Email</td>
+	<td>{{d1.email}}</td>
+</tr>
+<tr>
+	<th>Phone</td>
+	<td>{{d1.phone}}</td>
+</tr>
+{% endfor %}
+{% for d2 in data2 %}
+
+<tr>
+	<th>Location data </td>
+	<td>{{d2.lat}}, {{d2.lon}}</td>
+</tr>
+{% endfor %}
+
+
+</table>
+
+
+{% endblock %}

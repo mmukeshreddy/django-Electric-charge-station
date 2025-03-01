@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<script type="text/javascript">
+// google_dynamic_map.js file
+// Map Initialize function
+
+function initialize()
+{
+
+	// Set static latitude, longitude value
+	var latlng = new google.maps.LatLng(17.436951506722654, 78.44502579788968);
+	// Set map options
+	var myOptions = {
+		zoom: 12,
+		center: latlng,
+		panControl: true,
+		zoomControl: true,
+		scaleControl: true,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	}
+	// Create map object with options
+	map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	// Create and set the marker
+	marker = new google.maps.Marker({
+		map: map,
+		draggable:true,
+		position: latlng
+	});
+
+	// Register Custom "dragend" Event
+	google.maps.event.addListener(marker, 'dragend', function() {
+
+		// Get the Current position, where the pointer was dropped
+		var point = marker.getPosition();
+		// Center the map at given point
+		map.panTo(point);
+		// Update the textbox
+		document.getElementById('latitude').value=point.lat();
+		document.getElementById('longitude').value=point.lng();
+	});
+}
+</script>
+
+
+
+<!-- ********************************************************************************************************* -->
+
+<script
+src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDAkjJOa-Qj3Ncv13K5W4iH3sjH1sc_UPg&sensor=true">
+</script>
+
+ <script>
+var country,state,city,pinCode;
+function createCORSRequest(method, url) {
+  var xhr = new XMLHttpRequest();
+
+  if ("withCredentials" in xhr) {
+    // XHR for Chrome/Firefox/Opera/Safari.
+    xhr.open(method, url, true);
+
+  } else if (typeof XDomainRequest != "undefined") {
+    // XDomainRequest for IE.
+    xhr = new XDomainRequest();
+    xhr.open(method, url);
+
+  } else {
+    // CORS not supported.
+    xhr = null;
+  }
+  return xhr;
+}
+
+</script>
+
+
+
+
+
+			 <center><font color="red">   <strong>{{msg}}</strong></font></center>
+
+
+
+<form method="post" action="/addpoi/" >
+{% csrf_token %}
+<h2>Add About your business services</font></h3>
+
+<table width="100%"><tr><td>
+	<table  align="left">
+
+	<tr><td><h4>Business Name<br><input class="form-control"   required  type="text" name="bsnm" required style="width:270px;">
+
+	<tr><td><h4>Contact No. <br><input class="form-control"   required  type="text" name="phno" id="country" style="width:270px;">
+	<tr><td><h4>Email <br><input class="form-control"   required  type="text" name="email" id="country" style="width:270px;">
+	<tr><td><h4>Password<br><input class="form-control"   required  type="password" name="password" id="country" style="width:270px;">
+    
+	<tr><td><h4>Address<br><input class="form-control"   required  type="text" name="adrs" required style="width:270px;">
+	<tr><td><h4>City<br><input class="form-control"   required  type="text" name="city" required style="width:270px;">
+	
+	
+	<tr><td><h4>No. of fast charge units <br><input class="form-control"   required  type="number" name="nf" id="country" style="width:270px;">
+	<tr><td><h4>No. of normal charge units <br><input class="form-control"   required  type="number" name="nn" id="country" style="width:270px;">
+	<tr><td><h4>Cost of fast charge per hour <br><input class="form-control"   required  type="number" name="cf" id="country" style="width:270px;">
+	<tr><td><h4>Cost of normal charge per hour <br><input class="form-control"   required  type="number" name="cn" id="country" style="width:270px;">
+	
+
+
+</table>
+<table>
+
+
+
+			<tr><td><div class="form_settings"></div>
+			<div class="form_settings"></div>
+
+</tr>
+<tr>
+	<td>	<head>
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+		<script type="text/javascript" src="google_dynamic_map.js"></script>
+	</head>
+	<body onload="initialize();">
+
+		<div id="map_canvas" style="width:700px;height:530px;border:solid black 1px;"></div>
+
+
+
+<tr></tr>
+</table>
+<br>
+<table width="100%">
+<tr><td><h4>Latitude<br><input class="form-control"   required  type="text" name="latitude" id="latitude" style="width:270px;" value="17.436951506722654">
+<td>
+<h4>Longitude<br><input class="form-control"   required  type="text" name="longitude" id="longitude" style="width:270px;" value="78.44502579788968" >
+	<tr><td><td><input class="form-control"   required  class="submit" type="submit"  value="Submit" />
+
+</table>
+</table>
+
+</form>
+
+
+
+{% endblock %}
